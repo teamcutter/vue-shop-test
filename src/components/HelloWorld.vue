@@ -5,6 +5,19 @@ export default {
     return {
       email: 'example@google.com',
       password: '123456',
+      loginList: [
+        {
+          email: 'SomeEmlail'
+        },
+        {
+          email: 'SomeEmlail2'
+        },
+        {
+          email: 'SomeEmlail3'
+        }
+      ],
+      pages: 3,
+      currentPage: 1,
     }
   },
   methods: {
@@ -16,6 +29,19 @@ export default {
       this.password = value;
       console.log(this.password);
     },
+    loadLogins(page) {
+      console.log(`Загрузка логинов, страница - ${page}`)
+    }
+  },
+  computed: {
+    getEmailAndPassword() {
+      return `${this.email} ${this.password}`;
+    }
+  },
+  watch: {
+    currentPage(page){
+      this.loadLogins(page);
+    }
   }
 }
 </script>
@@ -39,6 +65,37 @@ export default {
           @input="passwordInput($event.target.value)"
         />
     </label>
+    <h1>
+      {{ getEmailAndPassword }}
+    </h1>
+    <ul>
+      <li v-for="(login, index) in loginList"
+      :key="index">
+        {{ login.email }}
+      </li>
+    </ul>
+    <button
+        type="button"
+        @click="currentPage--"
+      >
+        Prev.
+      </button>
+      <button
+        type="button"
+        v-for="page in pages"
+        :key="page"
+        @click="currentPage = page"
+      >
+        {{ page }}
+      </button>
+      <button
+        type="button"
+        @click="currentPage++"
+      >
+        Next.
+      </button>
+      <p>Page: {{ currentPage }} / {{ pages }}</p>
+
   </div>
 </template>
 
