@@ -20,5 +20,17 @@ npm run build
 npm run lint
 ```
 
+### Vue router
+```
+npm install vue-router
+```
+
+### Font Awesome
+```
+npm i --save @fortawesome/vue-fontawesome@prerelease
+npm i --save @fortawesome/fontawesome-svg-core
+npm i --save @fortawesome/free-solid-svg-icons
+```
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
